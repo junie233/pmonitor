@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://F:\workSpace-Android\DroidPlugin-master\pmonitor\sample\app.iml" filepath="F:\workSpace-Android\DroidPlugin-master\pmonitor\sample\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/monitorlib/monitorlib.iml" filepath="$PROJECT_DIR$/monitorlib/monitorlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pmonitor.iml" filepath="$PROJECT_DIR$/pmonitor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
+    </modules>
+  </component>
+</project>

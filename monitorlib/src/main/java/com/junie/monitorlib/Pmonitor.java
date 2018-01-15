@@ -2,7 +2,7 @@ package com.junie.monitorlib;
 
 import android.os.Looper;
 
-import com.junie.monitorlib.crash.CrashHandler;
+import com.junie.monitorlib.crash.JavaCrashHandler;
 import com.junie.monitorlib.listener.LogPrinterListener;
 import com.junie.monitorlib.printer.LogPrinter;
 
@@ -36,7 +36,7 @@ public class Pmonitor {
 
             }
         });
-        CrashHandler.getInstance().init();
+        JavaCrashHandler.getInstance().init();
     }
 
     public static void stopMonitor() {

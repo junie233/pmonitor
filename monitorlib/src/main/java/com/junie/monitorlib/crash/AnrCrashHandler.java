@@ -27,16 +27,21 @@ public class AnrCrashHandler {
         this.context = context;
         parseHandler = new Handler();
         traceFileParser = new TraceFileParser();
+        monitorAnr();
     }
 
 
     private void monitorAnr() {
-         fileObserver = new FileObserver("/data/anr/", FileObserver.CLOSE_WRITE) {
+        Log.d(TAG,"开始监控");
+        fileObserver = new FileObserver("/data/anr/", FileObserver.CLOSE_WRITE) {
             @Override
             public synchronized void onEvent(int event, String path) {
-                handleTrace(event,path);
+                Log.d(TAG,"文件发生变化:"+path);
+                handleTrace(event, "/data/anr/"+path);
             }
         };
+        fileObserver.startWatching();
+        handleTrace(1,"/data/anr/"+"traces.txt");
     }
 
     private void handleTrace(int event, final String path) {
@@ -46,13 +51,17 @@ public class AnrCrashHandler {
         if(!path.contains("trace")) {
             return;
         }
+        Log.d(TAG,"path:" + path);
+        //建议保存备份在做处理
         ActivityManager.ProcessErrorStateInfo errorStateInfo = ProcessUtils.getAnrProcessState(context);
-        Log.d(TAG,"errorStateInfo:" + errorStateInfo.crashData.toString());
+        if (errorStateInfo != null) {
+            Log.d(TAG, "errorStateInfo:" + errorStateInfo.crashData.toString());
+        }
         //开启线程解析异常
         parseHandler.post(new Runnable() {
             @Override
             public void run() {
-                TraceFileParser.parse(path);
+                CrashInfo crashInfo = TraceFileParser.parse(context,path);
             }
         });
     }

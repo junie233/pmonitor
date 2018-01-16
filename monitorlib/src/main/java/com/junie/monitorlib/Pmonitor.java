@@ -1,7 +1,9 @@
 package com.junie.monitorlib;
 
+import android.content.Context;
 import android.os.Looper;
 
+import com.junie.monitorlib.crash.CrashHandler;
 import com.junie.monitorlib.crash.JavaCrashHandler;
 import com.junie.monitorlib.listener.LogPrinterListener;
 import com.junie.monitorlib.printer.LogPrinter;
@@ -13,13 +15,11 @@ import com.junie.monitorlib.printer.LogPrinter;
 public class Pmonitor {
 
 
-
-
     public static void startMonitor(LogPrinterListener listener) {
         Looper.getMainLooper().setMessageLogging(new LogPrinter(listener));
     }
 
-    public static void startMonitor() {
+    public static void startMonitor(Context context) {
         startMonitor(new LogPrinterListener() {
             @Override
             public void startLooper() {
@@ -37,6 +37,7 @@ public class Pmonitor {
             }
         });
         JavaCrashHandler.getInstance().init();
+        CrashHandler.getInstance(context).startMonitor();
     }
 
     public static void stopMonitor() {
@@ -59,7 +60,14 @@ public class Pmonitor {
     }
 
     public static void testAnr() {
+        for (int i = 0; i < 2; ++i) {
+            try {
+                Thread.sleep(1000 * 11);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
+        }
     }
 
 

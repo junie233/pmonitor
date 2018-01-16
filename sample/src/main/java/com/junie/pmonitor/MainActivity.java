@@ -19,10 +19,12 @@ import com.junie.monitorlib.Pmonitor;
       private void initView() {
           findViewById(R.id.test_lag_btn).setOnClickListener(this);
           findViewById(R.id.test_crash_btn).setOnClickListener(this);
+          findViewById(R.id.test_anr_btn).setOnClickListener(this);
+
       }
 
       private void initMonitor() {
-          Pmonitor.startMonitor();
+          Pmonitor.startMonitor(this);
       }
 
 
@@ -41,6 +43,9 @@ import com.junie.monitorlib.Pmonitor;
                   break;
               case R.id.test_crash_btn:
                   Pmonitor.testCrash();
+                  break;
+              case R.id.test_anr_btn:
+                    Pmonitor.testAnr();
                   break;
           }
       }

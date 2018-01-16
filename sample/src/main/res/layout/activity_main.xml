@@ -17,5 +17,9 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:text="测试crash"/>
-
+   <Button
+       android:id="@+id/test_anr_btn"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="测试ANR"/>
 </LinearLayout>

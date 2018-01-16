@@ -19,9 +19,23 @@ public class CrashHandler {
         anrCrashHandler = new AnrCrashHandler();
     }
 
-    private void init() {
-        anrCrashHandler.init();
+    public void startMonitor() {
+        anrCrashHandler.init(context);
     }
 
+    private static CrashHandler instance;
+
+
+
+    public static CrashHandler getInstance(Context context){
+        if (instance == null) {
+            synchronized (CrashHandler.class){
+                if (instance == null) {
+                    instance = new CrashHandler(context) ;
+                }
+            }
+        }
+        return instance ;
+    }
 
 }

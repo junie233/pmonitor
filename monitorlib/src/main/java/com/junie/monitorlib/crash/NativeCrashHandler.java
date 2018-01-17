@@ -6,9 +6,12 @@ package com.junie.monitorlib.crash;
 
 public class NativeCrashHandler {
 
+    static {
+        System.loadLibrary("HelloBreakPad");
+    }
 
 
-
+    public static native void nativeCrashHandlerInit();
 
 
 

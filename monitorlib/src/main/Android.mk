@@ -58,6 +58,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := breakpad_client
 
 LOCAL_CPP_EXTENSION := .cc
+NDK_APP_DST_DIR := ../../../libs/$(TARGET_ARCH_ABI)
 
 # Breakpad uses inline ARM assembly that requires the library
 # to be built in ARM mode. Otherwise, the build will fail with
@@ -67,8 +68,6 @@ LOCAL_CPP_EXTENSION := .cc
 #   /tmp/cc8aMSoD.s:132: Error: invalid immediate: 288 is out of range
 #   /tmp/cc8aMSoD.s:244: Error: invalid immediate: 296 is out of range
 LOCAL_ARM_MODE := arm
-
-
 
 # List of client source files, directly taken from Makefile.am
 LOCAL_SRC_FILES := \
@@ -93,14 +92,10 @@ LOCAL_SRC_FILES := \
     src/common/linux/guid_creator.cc \
     src/common/linux/linux_libc_support.cc \
     src/common/linux/memory_mapped_file.cc \
-    src/common/linux/safe_readlink.cc \
-    src/processor/minidump_processor.cc \
-    src/processor/stackwalk_common.cc \
+    src/common/linux/safe_readlink.cc
 
 LOCAL_C_INCLUDES        := $(LOCAL_PATH)/src/common/android/include \
-                           $(LOCAL_PATH)/src \
-                           $(LOCAL_PATH)/src/processor \
-                           $(LOCAL_PATH)/src/google-breakpad/processor
+                           $(LOCAL_PATH)/src
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_C_INCLUDES)
 LOCAL_EXPORT_LDLIBS     := -llog

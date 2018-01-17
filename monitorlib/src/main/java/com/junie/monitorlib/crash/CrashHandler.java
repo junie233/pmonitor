@@ -21,6 +21,7 @@ public class CrashHandler {
 
     public void startMonitor() {
         anrCrashHandler.init(context);
+        NativeCrashHandler.nativeCrashHandlerInit();
     }
 
     private static CrashHandler instance;

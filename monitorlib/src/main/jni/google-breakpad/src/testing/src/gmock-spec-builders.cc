@@ -520,7 +520,7 @@ struct MockObjectState {
   int first_used_line;
   ::std::string first_used_test_case;
   ::std::string first_used_test;
-  bool leakable;  // true iff it's OK to leak the object.
+  bool leakable;  // true iff it's OK to LeakHandler the object.
   FunctionMockers function_mockers;  // All registered methods of the object.
 };
 
@@ -547,7 +547,7 @@ class MockObjectRegistry {
     int leaked_count = 0;
     for (StateMap::const_iterator it = states_.begin(); it != states_.end();
          ++it) {
-      if (it->second.leakable)  // The user said it's fine to leak this object.
+      if (it->second.leakable)  // The user said it's fine to LeakHandler this object.
         continue;
 
       // TODO(wan@google.com): Print the type of the leaked object.

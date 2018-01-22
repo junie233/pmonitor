@@ -694,7 +694,7 @@ bool Breakpad::HandleException(int exception_type,
   gBreakpadAllocator->Unprotect();
   // Configure the server to launch when we message the service port.
   // The reason we do this here, rather than at startup, is that we
-  // can leak a bootstrap service entry if this method is called and
+  // can LeakHandler a bootstrap service entry if this method is called and
   // there never ends up being a crash.
   inspector_.LaunchOnDemand();
   gBreakpadAllocator->Protect();

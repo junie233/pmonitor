@@ -237,7 +237,7 @@ CrashGenerationServer::ClientEvent(short revents)
       const unsigned num_fds = len / sizeof(int);
       if (num_fds > 1 || num_fds == 0) {
         // A nasty process could try and send us too many descriptors and
-        // force a leak.
+        // force a LeakHandler.
         for (unsigned i = 0; i < num_fds; ++i)
           close(reinterpret_cast<int*>(CMSG_DATA(hdr))[i]);
         return true;

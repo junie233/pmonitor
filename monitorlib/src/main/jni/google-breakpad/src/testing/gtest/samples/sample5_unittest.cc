@@ -38,7 +38,7 @@
 //
 // Sometimes, more than one test cases may want to use the same or
 // slightly different test fixtures.  For example, you may want to
-// make sure that all tests for a GUI library don't leak important
+// make sure that all tests for a GUI library don't LeakHandler important
 // system resources like fonts and brushes.  In Google Test, you do
 // this by putting the shared logic in a super (as in "super class")
 // test fixture, and then have each test case use a fixture derived

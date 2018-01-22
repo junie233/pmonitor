@@ -437,7 +437,7 @@ static int MethodSort(id a, id b, void *context) {
 // have 'leaks'. The simulator does though.
 
 // COV_NF_START
-// We don't have leak checking on by default, so this won't be hit.
+// We don't have LeakHandler checking on by default, so this won't be hit.
 static void _GTMRunLeaks(void) {
   // This is an atexit handler. It runs leaks for us to check if we are
   // leaking anything in our tests.
@@ -483,7 +483,7 @@ static __attribute__((constructor)) void _GTMInstallLeaks(void) {
     checkLeaks = getenv("GTM_ENABLE_LEAKS") ? YES : NO;
     if (checkLeaks) {
       // COV_NF_START
-      // We don't have leak checking on by default, so this won't be hit.
+      // We don't have LeakHandler checking on by default, so this won't be hit.
       fprintf(stderr, "Leak Checking Enabled\n");
       fflush(stderr);
       int ret = atexit(&_GTMRunLeaks);

@@ -956,7 +956,7 @@ GTEST_API_ void ParseGoogleTestFlagsOnly(int* argc, wchar_t** argv);
 GTEST_API_ String GetLastErrnoDescription();
 
 # if GTEST_OS_WINDOWS
-// Provides leak-safe Windows kernel handle ownership.
+// Provides LeakHandler-safe Windows kernel handle ownership.
 class AutoHandle {
  public:
   AutoHandle() : handle_(INVALID_HANDLE_VALUE) {}

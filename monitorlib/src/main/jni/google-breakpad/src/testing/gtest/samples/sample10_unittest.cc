@@ -29,7 +29,7 @@
 // Author: vladl@google.com (Vlad Losev)
 
 // This sample shows how to use Google Test listener API to implement
-// a primitive leak checker.
+// a primitive LeakHandler checker.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -117,19 +117,19 @@ int main(int argc, char **argv) {
     check_for_leaks = true;
   else
     printf("%s\n", "Run this program with --check_for_leaks to enable "
-           "custom leak checking in the tests.");
+           "custom LeakHandler checking in the tests.");
 
   // If we are given the --check_for_leaks command line flag, installs the
-  // leak checker.
+  // LeakHandler checker.
   if (check_for_leaks) {
     TestEventListeners& listeners = UnitTest::GetInstance()->listeners();
 
-    // Adds the leak checker to the end of the test event listener list,
+    // Adds the LeakHandler checker to the end of the test event listener list,
     // after the default text output printer and the default XML report
     // generator.
     //
     // The order is important - it ensures that failures generated in the
-    // leak checker's OnTestEnd() method are processed by the text and XML
+    // LeakHandler checker's OnTestEnd() method are processed by the text and XML
     // printers *before* their OnTestEnd() methods are called, such that
     // they are attributed to the right test. Remember that a listener
     // receives an OnXyzStart event *after* listeners preceding it in the

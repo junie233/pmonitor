@@ -32,7 +32,7 @@
 // Google Mock - a framework for writing C++ mock classes.
 //
 // This program is for verifying that a leaked mock object can be
-// caught by Google Mock's leak detector.
+// caught by Google Mock's LeakHandler detector.
 
 #include "gmock/gmock.h"
 
@@ -62,9 +62,9 @@ TEST(LeakTest, LeakedMockWithExpectCallCausesFailureWhenLeakCheckingIsEnabled) {
   EXPECT_CALL(*foo, DoThis());
   foo->DoThis();
 
-  // In order to test the leak detector, we deliberately leak foo.
+  // In order to test the LeakHandler detector, we deliberately LeakHandler foo.
 
-  // Makes sure Google Mock's leak detector can change the exit code
+  // Makes sure Google Mock's LeakHandler detector can change the exit code
   // to 1 even when the code is already exiting with 0.
   exit(0);
 }
@@ -74,9 +74,9 @@ TEST(LeakTest, LeakedMockWithOnCallCausesFailureWhenLeakCheckingIsEnabled) {
 
   ON_CALL(*foo, DoThis()).WillByDefault(Return());
 
-  // In order to test the leak detector, we deliberately leak foo.
+  // In order to test the LeakHandler detector, we deliberately LeakHandler foo.
 
-  // Makes sure Google Mock's leak detector can change the exit code
+  // Makes sure Google Mock's LeakHandler detector can change the exit code
   // to 1 even when the code is already exiting with 0.
   exit(0);
 }
@@ -89,10 +89,10 @@ TEST(LeakTest, CatchesMultipleLeakedMockObjects) {
   EXPECT_CALL(*foo2, DoThis());
   foo2->DoThis();
 
-  // In order to test the leak detector, we deliberately leak foo1 and
+  // In order to test the LeakHandler detector, we deliberately LeakHandler foo1 and
   // foo2.
 
-  // Makes sure Google Mock's leak detector can change the exit code
+  // Makes sure Google Mock's LeakHandler detector can change the exit code
   // to 1 even when the code is already exiting with 0.
   exit(0);
 }
